@@ -1,5 +1,8 @@
+import AboutUs from '../pages/AboutUs';
+import Home from '../pages/Home';
 import React, { Component } from 'react';
 import { withRouter, WithRouterProps } from '../HOC/withRouter';
+import '../styles/components/Header.css';
 
 interface HeaderProps extends WithRouterProps {}
 
@@ -28,7 +31,8 @@ class Header extends Component<HeaderProps, HeaderState> {
 
     return (
       <div className="header">
-        <nav>
+        <nav className="header-navigation">
+          <h2>{isHomePage ? 'Home Page' : 'About Page'}</h2>
           <ul>
             <li>
               <button onClick={() => this.props.navigate('/')}>Home</button>
@@ -38,7 +42,7 @@ class Header extends Component<HeaderProps, HeaderState> {
             </li>
           </ul>
         </nav>
-        <h1>{isHomePage ? 'Home Page' : 'About Us Page'}</h1>
+        <h1>{isHomePage ? <Home /> : <AboutUs />}</h1>
       </div>
     );
   }

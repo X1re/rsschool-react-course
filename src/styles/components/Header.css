@@ -1,0 +1,19 @@
+.header {
+}
+
+button {
+  border: none;
+  display: inline-block;
+  font-size: 24px;
+  background-color: transparent;
+}
+
+.header-navigation,
+ul {
+  display: flex;
+  list-style: none;
+}
+
+ul {
+  text-decoration: none;
+}
