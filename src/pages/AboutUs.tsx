@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
-interface AboutUsProps {}
-
-interface AboutUsState {}
-
-class AboutUs extends Component<AboutUsProps, AboutUsState> {
+class AboutUs extends Component {
   render() {
     return (
       <div>

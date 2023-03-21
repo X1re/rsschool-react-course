@@ -4,21 +4,19 @@ import React, { Component } from 'react';
 import { withRouter, WithRouterProps } from '../HOC/withRouter';
 import '../styles/components/Header.css';
 
-interface HeaderProps extends WithRouterProps {}
-
 interface HeaderState {
   isHomePage: boolean;
 }
 
-class Header extends Component<HeaderProps, HeaderState> {
-  constructor(props: HeaderProps) {
+class Header extends Component<WithRouterProps, HeaderState> {
+  constructor(props: WithRouterProps) {
     super(props);
     this.state = {
       isHomePage: this.props.location.pathname === '/',
     };
   }
 
-  componentDidUpdate(prevProps: HeaderProps) {
+  componentDidUpdate(prevProps: WithRouterProps) {
     if (prevProps.location.pathname !== this.props.location.pathname) {
       this.setState({
         isHomePage: this.props.location.pathname === '/',

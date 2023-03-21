@@ -4,15 +4,13 @@ import Search from '../components/Search';
 import { withRouter, WithRouterProps } from '../HOC/withRouter';
 import '../styles/components/Card.css';
 
-interface HomeProps extends WithRouterProps {}
-
 interface HomeState {
   searchValue: string;
   cards: CardProps[];
 }
 
-class Home extends Component<HomeProps, HomeState> {
-  constructor(props: HomeProps) {
+class Home extends Component<WithRouterProps, HomeState> {
+  constructor(props: WithRouterProps) {
     super(props);
 
     const searchValue = localStorage.getItem('searchValue') || '';
