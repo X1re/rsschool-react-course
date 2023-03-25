@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Card from '../components/Card';
-import Search from '../components/Search';
+import Card from '../components/ui/Card';
+import Search from '../components/ui/Search';
 import { withRouter, WithRouterProps } from '../HOC/withRouter';
 import cards, { CardProps } from '../mockdata/data';
 import '../styles/components/Card.css';

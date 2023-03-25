@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CardProps } from '../mockdata/data';
+import { CardProps } from '../../mockdata/data';
 import '../styles/components/Card.css';
 
 class Card extends Component<CardProps> {
