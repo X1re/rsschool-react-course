@@ -16,7 +16,7 @@ class Home extends Component<WithRouterProps, HomeState> {
     const searchValue = localStorage.getItem('searchValue') || '';
     this.state = {
       searchValue,
-      cards: cards,
+      cards: cards || [],
     };
   }
 
@@ -37,13 +37,13 @@ class Home extends Component<WithRouterProps, HomeState> {
     const { searchValue, cards } = this.state;
 
     return (
-      <div className="home-container">
+      <div className="home-container" data-testid="home">
         <Search
           value={searchValue}
           onChange={this.handleSearchChange}
           onSearch={this.handleSearchSubmit}
         />
-        <div className="card-container">
+        <div className="card-container" role="main">
           {cards.map((card: CardProps) => (
             <Card key={card.id} {...card} />
           ))}

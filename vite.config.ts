@@ -7,6 +7,9 @@ const vitestConfig: VitestUserConfigInterface = {
     environment: 'jsdom',
     globals: true,
     setupFiles: './src/test/setup.js',
+    coverage: {
+      all: true,
+    },
   },
 };
 

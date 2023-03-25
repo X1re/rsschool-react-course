@@ -28,7 +28,7 @@ class Header extends Component<WithRouterProps, HeaderState> {
     const { location, navigate } = this.props;
 
     return (
-      <div className="header">
+      <div className="header" data-testid="header">
         <nav className="header-navigation">
           <h2>{isHomePage ? 'Home Page' : location.pathname}</h2>
           <ul>

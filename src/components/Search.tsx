@@ -40,6 +40,7 @@ class Search extends Component<SearchProps, SearchState> {
             className="search-input"
             value={this.state.searchQuery}
             onChange={this.handleSearchChange}
+            placeholder="Search..."
           />
           <button type="submit" className="search-button">
             Search
