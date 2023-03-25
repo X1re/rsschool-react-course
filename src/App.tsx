@@ -1,9 +1,9 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import AboutUs from './pages/AboutUs';
 import NotFound from './pages/404';
 import Header from './components/ui/Header';
+import Survey from './pages/Survey';
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
         <Route path="/" element={<Header />}>
           <Route index element={<Home />} />
           <Route path="about-us" element={<AboutUs />} />
+          <Route path="survey" element={<Survey />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

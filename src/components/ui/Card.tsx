@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { CardProps } from '../../mockdata/data';
-import '../styles/components/Card.css';
+import '../../styles/components/Card.css';
 
 class Card extends Component<CardProps> {
   render() {

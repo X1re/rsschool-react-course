@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { withRouter, WithRouterProps } from '../../HOC/withRouter';
-import '../styles/components/Header.css';
+import '../../styles/components/Header.css';
 import { Outlet } from 'react-router-dom';
 
 interface HeaderState {

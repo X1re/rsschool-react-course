@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import Card from '../components/ui/Card';
 import Search from '../components/ui/Search';
 import { withRouter, WithRouterProps } from '../HOC/withRouter';

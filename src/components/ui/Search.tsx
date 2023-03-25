@@ -1,5 +1,5 @@
-import React, { ChangeEvent, Component } from 'react';
-import '../styles/components/Search.css';
+import { ChangeEvent, Component } from 'react';
+import '../../styles/components/Search.css';
 
 export interface SearchProps {
   onSearch: (searchQuery: string) => void;
