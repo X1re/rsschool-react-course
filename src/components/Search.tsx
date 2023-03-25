@@ -22,11 +22,11 @@ class Search extends Component<SearchProps, SearchState> {
     localStorage.setItem('searchQuery', this.state.searchQuery);
   }
 
-  handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({ searchQuery: event.target.value });
   };
 
-  handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     this.props.onSearch(this.state.searchQuery);
   };
