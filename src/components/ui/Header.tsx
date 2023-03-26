@@ -30,13 +30,16 @@ class Header extends Component<WithRouterProps, HeaderState> {
     return (
       <div className="header" data-testid="header">
         <nav className="header-navigation">
-          <h2>{isHomePage ? 'Home Page' : location.pathname}</h2>
+          <h2>{isHomePage ? 'Home Page' : location.pathname.slice(1)}</h2>
           <ul>
             <li>
               <button onClick={() => navigate('/')}>Home</button>
             </li>
             <li>
               <button onClick={() => navigate('/about-us')}>About Us</button>
+            </li>
+            <li>
+              <button onClick={() => navigate('/survey')}>Survey</button>
             </li>
           </ul>
         </nav>

@@ -1,19 +1,26 @@
-.header {
-}
-
-button {
+li > button {
   border: none;
   display: inline-block;
   font-size: 24px;
   background-color: transparent;
+  cursor: pointer;
+  color: black;
+}
+
+li > button:hover {
+  text-decoration: underline #009fb7;
+  text-underline-offset: 10px;
 }
 
 .header-navigation,
 ul {
   display: flex;
+  justify-content: space-between;
+  margin: 0 32px;
   list-style: none;
 }
 
 ul {
+  margin-top: 19px;
   text-decoration: none;
 }
