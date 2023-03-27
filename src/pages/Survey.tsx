@@ -8,6 +8,7 @@ import UploadField from '../components/form/UploadField';
 import SurveyCard from '../components/ui/SurveyCard';
 import { withRouter, WithRouterProps } from '../HOC/withRouter';
 import '../styles/pages/Survey.css';
+import validator from '../helper/validator';
 
 export interface SurveyState {
   name: string;
@@ -83,12 +84,14 @@ class Survey extends Component<WithRouterProps, SurveyState> {
       img: imgUrl,
     };
 
-    this.setState((prev: SurveyState) => ({
-      ...prev,
-      dataArr: [...prev.dataArr, newSurvey],
-    }));
-    this.resetInputs();
-    alert('thank you for submission!');
+    if (validator(newSurvey)) {
+      this.setState((prev: SurveyState) => ({
+        ...prev,
+        dataArr: [...prev.dataArr, newSurvey],
+      }));
+      this.resetInputs();
+      alert('thank you for submission!');
+    } else return alert('Please make sure all fields are filled in correctly');
   };
 
   handleImgUpload = (): string | null => {
