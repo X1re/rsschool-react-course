@@ -13,7 +13,7 @@ class SurveyCard extends Component<SurveyState> {
 
         <div className="survey-card__content">
           <p className="survey-card__text">{animalName}</p>
-          <h2>Hey! {name} !</h2>
+          <h2>Hey! {name}</h2>
           <p className="survey-card__text">your birthday: {birthday}</p>
           <p className="survey-card__text">you are from {country}</p>
           <p className="survey-card__text">{sex}</p>
