@@ -7,6 +7,7 @@ import TextField from '../components/form/TextField';
 import UploadField from '../components/form/UploadField';
 import SurveyCard from '../components/ui/SurveyCard';
 import { withRouter, WithRouterProps } from '../HOC/withRouter';
+import '../styles/pages/Survey.css';
 
 export interface SurveyState {
   name: string;
@@ -101,36 +102,38 @@ class Survey extends Component<WithRouterProps, SurveyState> {
   render(): ReactNode {
     return (
       <div className="survey">
-        <h1>Pls share with us your favorite animal</h1>
-        <h4>But first tell a bit about yourself</h4>
-        <form onSubmit={this.handleSubmit}>
-          <TextField label="Your name" inputRef={this.nameRef} />
-          <DateField label="Birthday" dateRef={this.birthdayRef} />
-          <SelectField label="Country" selectRef={this.countryRef} />
-          <RadioField
-            label="Sex"
-            options={[
-              { name: 'Male', value: 'male' },
-              { name: 'Female', value: 'female' },
-            ]}
-            radioRef={this.sexRef}
-            onChange={this.handleRadioChange}
-          />
-          <CheckBoxField checkRef={this.agreementRef} />
-          <h3>Fill the input to share</h3>
-          <TextField label="What animal you want to share?" inputRef={this.animalNameRef} />
-          <UploadField name="image" label="Upload picture of animal" uploadRef={this.imgRef} />
-          <button type="submit">Submit</button>
-        </form>
-        {this.state.dataArr.length > 0 ? (
-          <div className="">
-            {this.state.dataArr.map((card: SurveyState, i: number) => (
-              <SurveyCard key={card.name + i} {...card} />
-            ))}
-          </div>
-        ) : (
-          ''
-        )}
+        <div className="survey-content">
+          <h1>Pls share with us your favorite animal</h1>
+          <h4>But first tell a bit about yourself</h4>
+          <form onSubmit={this.handleSubmit}>
+            <TextField label="Your name" inputRef={this.nameRef} />
+            <DateField label="Birthday" dateRef={this.birthdayRef} />
+            <SelectField label="Country" selectRef={this.countryRef} />
+            <RadioField
+              label="Sex"
+              options={[
+                { name: 'Male', value: 'male' },
+                { name: 'Female', value: 'female' },
+              ]}
+              radioRef={this.sexRef}
+              onChange={this.handleRadioChange}
+            />
+            <CheckBoxField checkRef={this.agreementRef} />
+            <h3>Fill the input to share</h3>
+            <TextField label="What animal you want to share?" inputRef={this.animalNameRef} />
+            <UploadField name="image" label="Upload picture of animal" uploadRef={this.imgRef} />
+            <button type="submit">Submit</button>
+          </form>
+          {this.state.dataArr.length > 0 ? (
+            <div className="survey-card__container">
+              {this.state.dataArr.map((card: SurveyState, i: number) => (
+                <SurveyCard key={card.name + i} {...card} />
+              ))}
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
       </div>
     );
   }

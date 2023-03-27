@@ -1,0 +1,29 @@
+.survey-card {
+  border: 2px solid lightblue;
+  border-radius: 25px;
+  box-shadow: 0px 4px 8px rgba(172, 216, 230, 0.1);
+  outline: 3px solid;
+}
+.survey-card__content {
+  margin: 0 15px;
+  width: 400px;
+}
+.survey-card__content p {
+  border-bottom: 1px solid;
+}
+.survey-card__text {
+}
+.survey-card__image {
+  margin: 0 auto;
+  overflow: hidden;
+  height: 300px;
+  width: 300px;
+  object-position: center center;
+  border-bottom: 1px solid lightblue;
+}
+
+.survey-card__image img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
