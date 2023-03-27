@@ -10,6 +10,16 @@ import { withRouter, WithRouterProps } from '../HOC/withRouter';
 import '../styles/pages/Survey.css';
 import validator from '../helper/validator';
 
+export interface IdataArr {
+  name: string;
+  animalName: string;
+  birthday: string;
+  country: string;
+  sex: string;
+  agreement: string;
+  img: string;
+}
+
 export interface SurveyState {
   name: string;
   animalName: string;
@@ -17,16 +27,8 @@ export interface SurveyState {
   country: string;
   sex: string;
   agreement: string;
-  img: string | undefined;
-  dataArr: Array<{
-    name: string;
-    animalName: string;
-    birthday: string;
-    country: string;
-    sex: string;
-    agreement: string;
-    img: string | null | undefined;
-  }>;
+  img: string;
+  dataArr: Array<IdataArr>;
 }
 
 class Survey extends Component<WithRouterProps, SurveyState> {
@@ -91,10 +93,10 @@ class Survey extends Component<WithRouterProps, SurveyState> {
       }));
       this.resetInputs();
       alert('thank you for submission!');
-    } else return alert('Please make sure all fields are filled in correctly');
+    } else return alert('please fill form fields complitely');
   };
 
-  handleImgUpload = (): string | null => {
+  handleImgUpload = (): string => {
     const img = this.imgRef.current;
     if (img && img.files && img.files.length) {
       return URL.createObjectURL(img.files[0]);

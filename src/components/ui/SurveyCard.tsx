@@ -8,7 +8,7 @@ class SurveyCard extends Component<SurveyState> {
     return (
       <div className="survey-card">
         <div className="survey-card__image">
-          <img src={img} alt={animalName} />
+          <img src={img} width="300" height="300" alt={animalName} />
         </div>
 
         <div className="survey-card__content">

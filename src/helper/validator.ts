@@ -1,5 +1,5 @@
-import { SurveyState } from './../pages/Survey';
-export default function validator(obj: Partial<SurveyState>) {
+import { IdataArr } from './../pages/Survey';
+export default function validator(obj: IdataArr) {
   let errors = 0;
   const vals = Object.values(obj);
   for (const val of vals) {
