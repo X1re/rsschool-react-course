@@ -88,6 +88,7 @@ class Survey extends Component<WithRouterProps, SurveyState> {
       dataArr: [...prev.dataArr, newSurvey],
     }));
     this.resetInputs();
+    alert('thank you for submission!');
   };
 
   handleImgUpload = (): string | null => {
