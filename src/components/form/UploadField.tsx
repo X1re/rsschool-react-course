@@ -20,16 +20,3 @@ class UploadField extends Component<UploadProps> {
   }
 }
 export default UploadField;
-// img.src = URL.createObjectURL(this.files[i])
-{
-  /* <input
-  type="file"
-  id="fileElem"
-  multiple
-  accept="image/*"
-  style="display:none" />
-<a href="#" id="fileSelect">Select some files</a>
-<div id="fileList">
-  <p>No files selected!</p>
-</div> */
-}

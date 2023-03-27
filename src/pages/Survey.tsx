@@ -5,21 +5,31 @@ import RadioField from '../components/form/RadioField';
 import SelectField from '../components/form/SelectField';
 import TextField from '../components/form/TextField';
 import UploadField from '../components/form/UploadField';
+import SurveyCard from '../components/ui/SurveyCard';
 import { withRouter, WithRouterProps } from '../HOC/withRouter';
 
-interface SurveyState {
+export interface SurveyState {
   name: string;
   animalName: string;
   birthday: string;
   country: string;
   sex: string;
   agreement: string;
-  img: string | null;
+  img: string | undefined;
+  dataArr: Array<{
+    name: string;
+    animalName: string;
+    birthday: string;
+    country: string;
+    sex: string;
+    agreement: string;
+    img: string | null | undefined;
+  }>;
 }
 
 class Survey extends Component<WithRouterProps, SurveyState> {
   private nameRef = createRef<HTMLInputElement>();
-  private animalName = createRef<HTMLInputElement>();
+  private animalNameRef = createRef<HTMLInputElement>();
   private birthdayRef = createRef<HTMLInputElement>();
   private countryRef = createRef<HTMLSelectElement>();
   private sexRef: React.RefObject<HTMLInputElement>[] = [
@@ -29,16 +39,27 @@ class Survey extends Component<WithRouterProps, SurveyState> {
   private agreementRef = createRef<HTMLInputElement>();
   private imgRef = createRef<HTMLInputElement>();
 
-  state: SurveyState = {
-    name: this.nameRef.current?.value || '',
-    animalName: this.animalName.current?.value || '',
-    birthday: this.birthdayRef.current?.value || '',
-    country: this.countryRef.current?.value || '',
+  state = {
+    name: '',
+    animalName: '',
+    birthday: '',
+    country: '',
     sex: '',
-    agreement: this.agreementRef.current?.value || '',
-    img: this.imgRef.current?.value || '',
+    agreement: '',
+    img: '',
+    dataArr: [],
   };
-  data: Array<typeof this.state> = [];
+
+  resetInputs = (): void => {
+    this.nameRef.current!.value = '';
+    this.animalNameRef.current!.value = '';
+    this.birthdayRef.current!.value = '';
+    this.countryRef.current!.value = '';
+    this.sexRef[0].current!.checked = false;
+    this.sexRef[1].current!.checked = false;
+    this.agreementRef.current!.checked = false;
+    this.imgRef.current!.value = '';
+  };
 
   handleRadioChange = (): void => {
     const radio = this.sexRef[0].current?.checked ? 'male' : 'female';
@@ -48,34 +69,24 @@ class Survey extends Component<WithRouterProps, SurveyState> {
     }));
   };
 
-  resetForm = () => {
-    this.setState((prev) => ({
-      ...prev,
-      name: '',
-      animalName: '',
-      birthday: '',
-      country: '',
-      sex: '',
-      agreement: '',
-      img: '',
-    }));
-  };
-
-  handleSubmit = (e: FormEvent<EventTarget>): void => {
+  handleSubmit = (e: FormEvent<EventTarget>) => {
     e.preventDefault();
     const imgUrl = this.handleImgUpload();
-    this.setState((prev: SurveyState) => ({
-      ...prev,
+    const newSurvey = {
       name: this.nameRef.current!.value,
-      animalName: this.animalName.current!.value,
+      animalName: this.animalNameRef.current!.value,
       birthday: this.birthdayRef.current!.value,
       country: this.countryRef.current!.value,
       agreement: this.agreementRef.current!.value,
+      sex: this.state.sex,
       img: imgUrl,
+    };
+
+    this.setState((prev: SurveyState) => ({
+      ...prev,
+      dataArr: [...prev.dataArr, newSurvey],
     }));
-    this.data.push(this.state);
-    this.resetForm();
-    console.log(this.data);
+    this.resetInputs();
   };
 
   handleImgUpload = (): string | null => {
@@ -83,7 +94,7 @@ class Survey extends Component<WithRouterProps, SurveyState> {
     if (img && img.files && img.files.length) {
       return URL.createObjectURL(img.files[0]);
     } else {
-      return null;
+      return '';
     }
   };
 
@@ -107,10 +118,19 @@ class Survey extends Component<WithRouterProps, SurveyState> {
           />
           <CheckBoxField checkRef={this.agreementRef} />
           <h3>Fill the input to share</h3>
-          <TextField label="What animal you want to share?" inputRef={this.animalName} />
+          <TextField label="What animal you want to share?" inputRef={this.animalNameRef} />
           <UploadField name="image" label="Upload picture of animal" uploadRef={this.imgRef} />
           <button type="submit">Submit</button>
         </form>
+        {this.state.dataArr.length > 0 ? (
+          <div className="">
+            {this.state.dataArr.map((card: SurveyState, i: number) => (
+              <SurveyCard key={card.name + i} {...card} />
+            ))}
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     );
   }

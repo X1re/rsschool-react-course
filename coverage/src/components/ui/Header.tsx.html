@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/components/Header.tsx</title>
+    <title>Code coverage report for src/components/ui/Header.tsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/components</a> Header.tsx</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/ui</a> Header.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.75% </span>
+                <span class="strong">88.46% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>43/49</span>
+                <span class='fraction'>46/52</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/5</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.75% </span>
+                <span class="strong">88.46% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>43/49</span>
+                <span class='fraction'>46/52</span>
             </div>
         
             
@@ -112,7 +112,10 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -158,12 +161,15 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react';
-import { withRouter, WithRouterProps } from '../HOC/withRouter';
-import '../styles/components/Header.css';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component } from 'react';
+import { withRouter, WithRouterProps } from '../../HOC/withRouter';
+import '../../styles/components/Header.css';
 import { Outlet } from 'react-router-dom';
 &nbsp;
 interface HeaderState {
@@ -193,13 +199,16 @@ class Header extends Component&lt;WithRouterProps, HeaderState&gt; {
     return (
       &lt;div className="header" data-testid="header"&gt;
         &lt;nav className="header-navigation"&gt;
-          &lt;h2&gt;{isHomePage ? <span class="branch-0 cbranch-no" title="branch not covered" >'Home Page' : location.pathname}&lt;</span>/h2&gt;
+          &lt;h2&gt;{isHomePage ? <span class="branch-0 cbranch-no" title="branch not covered" >'Home Page' : location.pathname.slice(1)}&lt;</span>/h2&gt;
           &lt;ul&gt;
             &lt;li&gt;
               &lt;button onClick={<span class="fstat-no" title="function not covered" >() =&gt; navigate('/')}&gt;H</span>ome&lt;/button&gt;
             &lt;/li&gt;
             &lt;li&gt;
               &lt;button onClick={<span class="fstat-no" title="function not covered" >() =&gt; navigate('/about-us')}&gt;A</span>bout Us&lt;/button&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;button onClick={<span class="fstat-no" title="function not covered" >() =&gt; navigate('/survey')}&gt;S</span>urvey&lt;/button&gt;
             &lt;/li&gt;
           &lt;/ul&gt;
         &lt;/nav&gt;
@@ -217,16 +226,16 @@ export default withRouter(Header);
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-25T06:06:18.277Z
+                at 2023-03-26T16:00:34.781Z
             </div>
-        <script src="../../prettify.js"></script>
+        <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
     </body>
 </html>
     
