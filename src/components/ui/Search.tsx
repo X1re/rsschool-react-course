@@ -1,54 +1,38 @@
-import { ChangeEvent, Component } from 'react';
+import { ChangeEventHandler, FormEvent, useState } from 'react';
 import '../../styles/components/Search.css';
 
 export interface SearchProps {
   onSearch: (searchQuery: string) => void;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   value: string;
 }
 
-interface SearchState {
-  searchQuery: string;
-}
+const Search = ({ onSearch, value }: SearchProps) => {
+  const [searchValue, setSearchValue] = useState(value);
 
-class Search extends Component<SearchProps, SearchState> {
-  constructor(props: SearchProps) {
-    super(props);
-    const searchQuery = localStorage.getItem('searchQuery') || '';
-    this.state = { searchQuery };
-  }
-
-  componentWillUnmount() {
-    localStorage.setItem('searchQuery', this.state.searchQuery);
-  }
-
-  handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    this.setState({ searchQuery: event.target.value });
+  const handleSearchChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setSearchValue(event.target.value);
   };
-
-  handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    this.props.onSearch(this.state.searchQuery);
+    onSearch(searchValue);
   };
 
-  render() {
-    return (
-      <div className="search-bar">
-        <form onSubmit={this.handleSearchSubmit}>
-          <input
-            type="text"
-            className="search-input"
-            value={this.state.searchQuery}
-            onChange={this.handleSearchChange}
-            placeholder="Search..."
-          />
-          <button type="submit" className="search-button">
-            Search
-          </button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="search-bar">
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          className="search-input"
+          value={searchValue}
+          onChange={handleSearchChange}
+          placeholder="Search..."
+        />
+        <button type="submit" className="search-button">
+          Search
+        </button>
+      </form>
+    </div>
+  );
+};
 
 export default Search;
