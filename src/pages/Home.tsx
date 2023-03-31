@@ -1,56 +1,36 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import Card from '../components/ui/Card';
 import Search from '../components/ui/Search';
-import { withRouter, WithRouterProps } from '../HOC/withRouter';
 import cards, { CardProps } from '../mockdata/data';
 import '../styles/components/Card.css';
 
-interface HomeState {
-  searchValue: string;
-  cards: Array<CardProps>;
-}
+const Home = () => {
+  const [searchValue, setSearchValue] = useState('');
+  const [homeCards, setHomeCards] = useState(cards);
+  const storageValue = localStorage.getItem('searchValue') || '';
 
-class Home extends Component<WithRouterProps, HomeState> {
-  constructor(props: WithRouterProps) {
-    super(props);
-    const searchValue = localStorage.getItem('searchValue') || '';
-    this.state = {
-      searchValue,
-      cards: cards || [],
-    };
-  }
-
-  handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const searchValue = event.target.value;
-    this.setState({ searchValue });
+    setSearchValue(storageValue);
     localStorage.setItem('searchValue', searchValue);
   };
 
-  handleSearchSubmit = (searchQuery: string): void => {
-    const filteredCards = this.state.cards.filter((card) =>
+  const handleSearchSubmit = (searchQuery: string): void => {
+    const filteredCards = cards.filter((card) =>
       card.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    this.setState({ searchValue: searchQuery, cards: filteredCards });
+    setHomeCards(filteredCards);
   };
-
-  render() {
-    const { searchValue, cards } = this.state;
-
-    return (
-      <div className="home-container" data-testid="home">
-        <Search
-          value={searchValue}
-          onChange={this.handleSearchChange}
-          onSearch={this.handleSearchSubmit}
-        />
-        <div className="card-container" role="main">
-          {cards.map((card: CardProps) => (
-            <Card key={card.id} {...card} />
-          ))}
-        </div>
+  return (
+    <div className="home-container" data-testid="home">
+      <Search value={searchValue} onChange={handleSearchChange} onSearch={handleSearchSubmit} />
+      <div className="card-container" role="main">
+        {homeCards.map((homeCard: CardProps) => (
+          <Card key={homeCard.id} {...homeCard} />
+        ))}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default withRouter(Home);
+export default Home;
