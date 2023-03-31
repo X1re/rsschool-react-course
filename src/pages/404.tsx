@@ -1,8 +1,12 @@
+import travolta from '../assets/confused-john-travolta.gif';
+import '../styles/pages/404.css';
+
 const NotFound = () => {
   return (
-    <div>
-      <h1>404 Page Not Found</h1>
-      <p>The requested URL was not found on this server.</p>
+    <div className="notFound">
+      <h1>404</h1>
+      <img src={travolta} height="388" width="400" alt="travolta" />
+      <h2>Oops something went wrong! This page does not exist.</h2>
     </div>
   );
 };

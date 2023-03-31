@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FormEvent, useState } from 'react';
+import { ChangeEventHandler, FormEventHandler, useState } from 'react';
 import '../../styles/components/Search.css';
 
 export interface SearchProps {
@@ -12,7 +12,7 @@ const Search = ({ onSearch, value }: SearchProps) => {
   const handleSearchChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchValue(event.target.value);
   };
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit: FormEventHandler = (event) => {
     event.preventDefault();
     onSearch(searchValue);
   };

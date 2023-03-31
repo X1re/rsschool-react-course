@@ -1,8 +1,10 @@
+import '../styles/pages/AboutUs.css';
+
 const AboutUs = () => {
   return (
-    <div>
+    <div className="aboutUs">
       <h1>About Us</h1>
-      <p>Here we publish cute animals</p>
+      <p>We publish cute animals here</p>
     </div>
   );
 };
