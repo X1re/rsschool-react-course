@@ -1,20 +1,17 @@
-import { Component, ReactNode, RefObject } from 'react';
+import { RefObject } from 'react';
 
-interface CheckProps {
+type CheckRef = {
   checkRef: RefObject<HTMLInputElement>;
-}
+};
 
-class CheckBoxField extends Component<CheckProps> {
-  render(): ReactNode {
-    const { checkRef } = this.props;
-    return (
-      <div>
-        <label>
-          <input type="checkbox" name="agreement" ref={checkRef} /> I want to share my favourite
-          animal!
-        </label>
-      </div>
-    );
-  }
-}
+const CheckBoxField = ({ checkRef }: CheckRef) => {
+  return (
+    <div>
+      <label>
+        <input type="checkbox" name="agreement" ref={checkRef} /> I want to share my favourite
+        animal!
+      </label>
+    </div>
+  );
+};
 export default CheckBoxField;
