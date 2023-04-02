@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/27</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/27</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -85,63 +85,48 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component } from 'react';
-import { SurveyState } from '../../pages/Survey';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IdataArr } from '../../pages/Survey';
 import '../../styles/components/SurveyCard.css';
 &nbsp;
-class SurveyCard extends Component&lt;SurveyState&gt; {
-<span class="fstat-no" title="function not covered" >  render() {</span>
-<span class="cstat-no" title="statement not covered" >    const { name, animalName, birthday, country, sex, agreement, img } = this.props;</span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div className="survey-card"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;div className="survey-card__image"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;img src={img} width="300" height="300" alt={animalName} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        &lt;div className="survey-card__content"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;p className="survey-card__text"&gt;{animalName}&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;h2&gt;Hey! {name}&lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;p className="survey-card__text"&gt;your birthday: {birthday}&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;p className="survey-card__text"&gt;you are from {country}&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;p className="survey-card__text"&gt;{sex}&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;p className="survey-card__text"&gt;thank you for sharing! {agreement}&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-}
+const SurveyCard = ({ name, animalName, birthday, country, sex, agreement, img }: IdataArr) =&gt; {
+  return (
+    &lt;div className="survey-card"&gt;
+      &lt;div className="survey-card__image"&gt;
+        &lt;img src={img} width="300" height="300" alt={animalName} /&gt;
+      &lt;/div&gt;
+      &lt;div className="survey-card__content"&gt;
+        &lt;p className="survey-card__text"&gt;{animalName}&lt;/p&gt;
+        &lt;h2&gt;Hey! {name}&lt;/h2&gt;
+        &lt;p className="survey-card__text"&gt;your birthday: {birthday}&lt;/p&gt;
+        &lt;p className="survey-card__text"&gt;you are from {country}&lt;/p&gt;
+        &lt;p className="survey-card__text"&gt;{sex}&lt;/p&gt;
+        &lt;p className="survey-card__text"&gt;thank you for sharing! {agreement}&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
 &nbsp;
 export default SurveyCard;
 &nbsp;</pre></td></tr></table></pre>
@@ -151,7 +136,7 @@ export default SurveyCard;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-31T15:54:01.052Z
+                at 2023-04-02T18:25:47.303Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

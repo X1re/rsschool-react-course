@@ -4,6 +4,7 @@ import AboutUs from './pages/AboutUs';
 import NotFound from './pages/404';
 import Header from './components/ui/Header';
 import Survey from './pages/Survey';
+import './styles/index.css';
 
 function App() {
   return (

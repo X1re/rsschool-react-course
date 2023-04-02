@@ -1,7 +1,7 @@
-import { SurveyState } from '../../pages/Survey';
+import { IdataArr } from '../../pages/Survey';
 import '../../styles/components/SurveyCard.css';
 
-const SurveyCard = ({ name, animalName, birthday, country, sex, agreement, img }: SurveyState) => {
+const SurveyCard = ({ name, animalName, birthday, country, sex, agreement, img }: IdataArr) => {
   return (
     <div className="survey-card">
       <div className="survey-card__image">

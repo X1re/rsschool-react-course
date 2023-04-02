@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.14% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/35</span>
+                <span class='fraction'>34/34</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">66.66% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.14% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/35</span>
+                <span class='fraction'>34/34</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -97,8 +97,7 @@
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -109,64 +108,62 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, ReactNode, RefObject } from 'react';
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { RefObject } from 'react';
 &nbsp;
-interface RadioProps {
+type RadioProps = {
   label: string;
   radioRef: Array&lt;RefObject&lt;HTMLInputElement&gt;&gt;;
   options: Array&lt;{ name: string; value: string }&gt;;
   onChange: (event: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; void;
-}
+  error: string;
+};
 &nbsp;
-class RadioField extends Component&lt;RadioProps&gt; {
-<span class="fstat-no" title="function not covered" >  render(): ReactNode {</span>
-<span class="cstat-no" title="statement not covered" >    const { radioRef, label, options, onChange } = this.props;</span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div className="radio"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;span&gt;{label}&lt;/span&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;span className="radio-input"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          {options.map((option, i) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >            &lt;span key={i}&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;input</span>
-<span class="cstat-no" title="statement not covered" >                ref={radioRef[i]}</span>
-<span class="cstat-no" title="statement not covered" >                type="radio"</span>
-<span class="cstat-no" title="statement not covered" >                id={option.name}</span>
-<span class="cstat-no" title="statement not covered" >                name={label}</span>
-<span class="cstat-no" title="statement not covered" >                value={option.value}</span>
-<span class="cstat-no" title="statement not covered" >                onChange={onChange}</span>
-<span class="cstat-no" title="statement not covered" >              /&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;label htmlFor={option.name}&gt;{option.name}&lt;/label&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;/span&gt;</span>
-<span class="cstat-no" title="statement not covered" >          ))}</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/span&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-}
+const RadioField = ({ radioRef, label, options, onChange, error }: RadioProps) =&gt; {
+  return (
+    &lt;div className="radio"&gt;
+      &lt;span&gt;{label}&lt;/span&gt;
+      &lt;span className="radio-input"&gt;
+        {options.map((option, i) =&gt; (
+          &lt;span key={i}&gt;
+            &lt;input
+              ref={radioRef[i]}
+              type="radio"
+              id={option.name}
+              name={label}
+              value={option.value}
+              onChange={onChange}
+            /&gt;
+            &lt;label htmlFor={option.name}&gt;{option.name}&lt;/label&gt;
+          &lt;/span&gt;
+        ))}
+      &lt;/span&gt;
+      {<span class="branch-0 cbranch-no" title="branch not covered" >error &amp;&amp; &lt;div className="error"&gt;{error}&lt;/div&gt;}</span>
+    &lt;/div&gt;
+  );
+};
 export default RadioField;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -175,7 +172,7 @@ export default RadioField;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-31T15:54:01.052Z
+                at 2023-04-02T18:25:47.303Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

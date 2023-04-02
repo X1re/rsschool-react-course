@@ -7,7 +7,15 @@ import TextField from '../components/form/TextField';
 import UploadField from '../components/form/UploadField';
 import SurveyCard from '../components/ui/SurveyCard';
 import '../styles/pages/Survey.css';
-import validator from '../helper/validator';
+import {
+  validateAgreement,
+  validateAnimal,
+  validateCountry,
+  validateDate,
+  validateImage,
+  validateName,
+  validateSex,
+} from '../utils/validator/validator';
 
 export interface IdataArr {
   name: string;
@@ -15,7 +23,7 @@ export interface IdataArr {
   birthday: string;
   country: string;
   sex: string;
-  agreement: string;
+  agreement: boolean;
   img: string;
 }
 
@@ -30,6 +38,7 @@ const Survey = () => {
   ];
   const agreementRef = createRef<HTMLInputElement>();
   const imgRef = createRef<HTMLInputElement>();
+  const formRef = createRef<HTMLFormElement>();
   const [dataArr, setDataArr] = useState<Array<IdataArr>>([]);
   const [surveyData, setSurveyData] = useState({
     name: '',
@@ -40,17 +49,15 @@ const Survey = () => {
     agreement: '',
     img: '',
   });
-
-  const resetInputs = (): void => {
-    nameRef.current!.value = '';
-    animalNameRef.current!.value = '';
-    birthdayRef.current!.value = '';
-    countryRef.current!.value = '';
-    sexRef[0].current!.checked = false;
-    sexRef[1].current!.checked = false;
-    agreementRef.current!.checked = false;
-    imgRef.current!.value = '';
-  };
+  const [errors, setErrors] = useState({
+    name: '',
+    animalName: '',
+    birthday: '',
+    country: '',
+    sex: '',
+    agreement: '',
+    image: '',
+  });
 
   const handleRadioChange = (): void => {
     const radio = sexRef[0].current?.checked ? 'male' : 'female';
@@ -68,16 +75,34 @@ const Survey = () => {
       animalName: animalNameRef.current!.value,
       birthday: birthdayRef.current!.value,
       country: countryRef.current!.value,
-      agreement: agreementRef.current!.value,
+      agreement: agreementRef.current!.checked,
       sex: surveyData.sex,
       img: imgUrl,
     };
 
-    if (validator(newSurvey)) {
-      setDataArr((prev: Array<IdataArr>) => [...prev, newSurvey]);
-      resetInputs();
-      alert('thank you for submission!');
-    } else return alert('please fill form fields complitely');
+    const validate = () => {
+      setErrors((prev) => ({ ...prev, animalName: validateAnimal(animalNameRef) }));
+      setErrors((prev) => ({ ...prev, name: validateName(nameRef) }));
+      setErrors((prev) => ({ ...prev, birthday: validateDate(birthdayRef) }));
+      setErrors((prev) => ({ ...prev, sex: validateSex(sexRef) }));
+      setErrors((prev) => ({ ...prev, country: validateCountry(countryRef) }));
+      setErrors((prev) => ({ ...prev, agreement: validateAgreement(agreementRef) }));
+      setErrors((prev) => ({ ...prev, image: validateImage(imgRef) }));
+    };
+    validate();
+    if (Object.values(newSurvey).some((v) => v === '')) return;
+    setDataArr((prev: Array<IdataArr>) => [...prev, newSurvey]);
+    formRef.current?.reset();
+    setErrors({
+      name: '',
+      animalName: '',
+      birthday: '',
+      country: '',
+      sex: '',
+      agreement: '',
+      image: '',
+    });
+    alert('thank you for submission!');
   };
 
   const handleImgUpload = (): string => {
@@ -94,11 +119,12 @@ const Survey = () => {
       <div className="survey-content">
         <h1>Pls share with us your favorite animal</h1>
         <h4>But first tell a bit about yourself</h4>
-        <form onSubmit={handleSubmit}>
-          <TextField label="Your name" inputRef={nameRef} />
-          <DateField label="Birthday" dateRef={birthdayRef} />
-          <SelectField label="Country" selectRef={countryRef} />
+        <form onSubmit={handleSubmit} ref={formRef}>
+          <TextField label="Your name" inputRef={nameRef} error={errors.name} />
+          <DateField label="Birthday" dateRef={birthdayRef} error={errors.birthday} />
+          <SelectField label="Country" selectRef={countryRef} error={errors.country} />
           <RadioField
+            error={errors.sex}
             label="Sex"
             options={[
               { name: 'Male', value: 'male' },
@@ -107,20 +133,27 @@ const Survey = () => {
             radioRef={sexRef}
             onChange={handleRadioChange}
           />
-          <CheckBoxField checkRef={agreementRef} />
+          <CheckBoxField checkRef={agreementRef} error={errors.agreement} />
           <h3>Fill the input to share</h3>
-          <TextField label="What animal you want to share?" inputRef={animalNameRef} />
-          <UploadField name="image" label="Upload picture of animal" uploadRef={imgRef} />
+          <TextField
+            label="What animal you want to share?"
+            inputRef={animalNameRef}
+            error={errors.animalName}
+          />
+          <UploadField
+            name="image"
+            label="Upload picture of animal"
+            uploadRef={imgRef}
+            error={errors.image}
+          />
           <button type="submit">Submit</button>
         </form>
-        {dataArr.length > 0 ? (
+        {dataArr && (
           <div className="survey-card__container">
             {dataArr.map((card: IdataArr, i: number) => (
               <SurveyCard key={card.name + i} {...card} />
             ))}
           </div>
-        ) : (
-          ''
         )}
       </div>
     </div>

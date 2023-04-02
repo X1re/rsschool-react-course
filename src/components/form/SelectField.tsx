@@ -9,9 +9,10 @@ type CountryProps = {
 type SelectProps = {
   label: string;
   selectRef: RefObject<HTMLSelectElement>;
+  error: string;
 };
 
-const SelectField = ({ selectRef, label }: SelectProps) => {
+const SelectField = ({ selectRef, label, error }: SelectProps) => {
   return (
     <div>
       <label>{label}</label>
@@ -23,6 +24,7 @@ const SelectField = ({ selectRef, label }: SelectProps) => {
           </option>
         ))}
       </select>
+      {error && <div className="error">{error}</div>}
     </div>
   );
 };
