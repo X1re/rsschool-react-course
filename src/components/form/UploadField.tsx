@@ -1,21 +1,30 @@
-import { RefObject } from 'react';
+import { FieldError, Path, UseFormRegister } from 'react-hook-form';
+import { IFormValues } from '../../pages/Survey';
 
 type UploadProps = {
-  uploadRef: RefObject<HTMLInputElement>;
-  name: string;
-  label: string;
-  error: string;
+  label: Path<IFormValues>;
+  name: Path<IFormValues>;
+  register: UseFormRegister<IFormValues>;
+  imageError: FieldError | undefined;
 };
 
-const UploadField = ({ uploadRef, name, label, error }: UploadProps) => {
-  console.log(error);
+const UploadField = ({ label, name, register, imageError }: UploadProps) => {
   return (
     <div>
       <label>
         {label}
-        <input accept="image/png, image/jpeg" type="file" name={name} ref={uploadRef} />
+        <input
+          accept="image/png, image/jpeg"
+          type="file"
+          {...register(name, {
+            required: {
+              value: true,
+              message: 'Image should be uploaded',
+            },
+          })}
+        />
       </label>
-      {error && <div className="error">{error}</div>}
+      {imageError && <div className="error">{imageError.message}</div>}
     </div>
   );
 };

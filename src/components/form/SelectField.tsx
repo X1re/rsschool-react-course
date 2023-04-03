@@ -1,22 +1,26 @@
-import { RefObject } from 'react';
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import { IFormValues } from '../../pages/Survey';
 import countries from '../../mockdata/countries.json';
+import { forwardRef } from 'react';
 
 type CountryProps = {
   phone: number;
   name: string;
 };
-
 type SelectProps = {
   label: string;
-  selectRef: RefObject<HTMLSelectElement>;
-  error: string;
+  errors: FieldErrors<FieldValues>;
+  name: string;
 };
 
-const SelectField = ({ selectRef, label, error }: SelectProps) => {
+const SelectField = forwardRef<
+  HTMLSelectElement,
+  SelectProps & ReturnType<UseFormRegister<IFormValues>>
+>(({ label, name, onChange, errors }, ref) => {
   return (
-    <div>
+    <>
       <label>{label}</label>
-      <select ref={selectRef}>
+      <select name={name} ref={ref} onChange={onChange}>
         <option value="">Select a country</option>
         {countries.map((country: CountryProps) => (
           <option key={country.phone} value={country.name}>
@@ -24,9 +28,9 @@ const SelectField = ({ selectRef, label, error }: SelectProps) => {
           </option>
         ))}
       </select>
-      {error && <div className="error">{error}</div>}
-    </div>
+      {errors[label] && <div className="error">Please select Country</div>}
+    </>
   );
-};
+});
 
 export default SelectField;
