@@ -51,6 +51,7 @@ const Survey = () => {
     };
     setDataArr((prev) => [...prev, newData]);
     reset();
+    alert('Thank you for submission!');
   };
 
   return (
