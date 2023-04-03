@@ -1,0 +1,12 @@
+.survey-content {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.survey-card__container {
+  margin: 42px auto 0;
+  max-width: 1370px;
+  gap: 32px;
+  display: flex;
+  flex-wrap: wrap;
+}
