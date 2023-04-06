@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FormEventHandler, useState } from 'react';
+import { ChangeEventHandler, FormEventHandler, useEffect, useRef, useState } from 'react';
 import '../../styles/components/Search.css';
 
 export interface SearchProps {
@@ -16,6 +16,19 @@ const Search = ({ onSearch, value }: SearchProps) => {
     event.preventDefault();
     onSearch(searchValue);
   };
+
+  const valRef = useRef(searchValue);
+  useEffect(() => {
+    valRef.current = searchValue;
+  }, [searchValue]);
+
+  useEffect(() => {
+    return () => {
+      if (valRef.current) {
+        localStorage.setItem('searchValue', valRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="search-bar">
