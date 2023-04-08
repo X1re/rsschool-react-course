@@ -11,6 +11,9 @@ const vitestConfig: VitestUserConfigInterface = {
       all: true,
     },
   },
+  server: {
+    cors: false,
+  },
 };
 
 export default defineConfig({

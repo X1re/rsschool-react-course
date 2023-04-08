@@ -6,6 +6,7 @@ import RadioField from '../components/form/RadioField';
 import SelectField from '../components/form/SelectField';
 import TextField from '../components/form/TextField';
 import UploadField from '../components/form/UploadField';
+import Modal from '../components/ui/Modal';
 import SurveyCard from '../components/ui/SurveyCard';
 import '../styles/pages/Survey.css';
 
@@ -29,10 +30,12 @@ export interface IFormValues {
   animalName: string;
   'Upload picture of animal': string;
   image: string;
+  open: () => void;
 }
 
 const Survey = () => {
   const [dataArr, setDataArr] = useState<Array<IdataArr>>([]);
+  const [modal, setModal] = useState(false);
   const {
     register,
     handleSubmit,
@@ -51,11 +54,12 @@ const Survey = () => {
     };
     setDataArr((prev) => [...prev, newData]);
     reset();
-    alert('Thank you for submission!');
+    setModal(true);
   };
 
   return (
     <div className="survey">
+      {modal && <Modal modalType="submit" open={modal} onClose={setModal} />}
       <div className="survey-content">
         <h1>Pls share with us your favorite animal</h1>
         <h4>But first tell a bit about yourself</h4>
