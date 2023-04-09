@@ -20,7 +20,7 @@ const Modal = ({ modalType, open, onClose, card }: ModalProps) => {
   return (
     <>
       {isOpen && (
-        <div className="modal-container" onClick={handleCloseModal}>
+        <div className="modal-container" data-testid="modal-container" onClick={handleCloseModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="close-button" onClick={handleCloseModal}>
               X
