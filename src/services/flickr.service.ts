@@ -14,6 +14,9 @@ export type Photo = {
   secret: string;
   server: string;
   title: string;
+  onShowModal: () => void;
+  onCardClick: (id: string) => void;
+  type: string;
 };
 
 const interestingEndpoint = `?method=flickr.interestingness.getList&api_key=${

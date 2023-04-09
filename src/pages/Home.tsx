@@ -5,14 +5,18 @@ import flickr from '../services/flickr.service';
 import { Photo } from '../services/flickr.service';
 import Search from '../components/ui/Search';
 import '../styles/components/Card.css';
+import Modal from '../components/ui/Modal';
 
 const Home = () => {
   const [homeCards, setHomeCards] = useState<[] | Photo[]>([]);
   const storageValue = localStorage.getItem('searchValue');
   const [searchValue, setSearchValue] = useState(storageValue || null);
+  const [modal, setModal] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<Photo>();
+
   const handleSearchSubmit = (searchQuery: string): void => {
     setSearchValue(searchQuery);
-    findPhotos(searchQuery);
+    if (searchQuery) findPhotos(searchQuery);
   };
 
   async function findPhotos(query: string) {
@@ -23,6 +27,12 @@ const Home = () => {
       console.log(error);
     }
   }
+  const openCardModal = (id: string) => {
+    const clickedCard = homeCards.find((card) => card.id === id);
+    setSelectedCard(clickedCard);
+    console.log(clickedCard);
+    setModal(true);
+  };
 
   const getPopular = async () => {
     try {
@@ -40,12 +50,16 @@ const Home = () => {
       }
     };
   }, [searchValue]);
+
   return (
-    <div className="home-container" data-testid="home">
+    <div className="home-container" data-testid="home" style={{ overflow: 'hidden' }}>
+      {modal && <Modal modalType="card" open={modal} card={selectedCard} onClose={setModal} />}
       <Search onSearch={handleSearchSubmit} value={searchValue || ''} />
       <div className="card-container" role="main">
         {homeCards.length > 0 ? (
-          homeCards.map((homeCard) => <Card key={homeCard.id} {...homeCard} />)
+          homeCards.map((homeCard) => (
+            <Card key={homeCard.id} {...homeCard} onCardClick={openCardModal} />
+          ))
         ) : (
           <Loading />
         )}
