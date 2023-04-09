@@ -11,7 +11,7 @@ type ModalProps = {
 
 const Modal = ({ modalType, open, onClose, card }: ModalProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(open);
-  console.log(card);
+
   const handleCloseModal = () => {
     setIsOpen(false);
     onClose(false);

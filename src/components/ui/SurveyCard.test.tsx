@@ -9,7 +9,7 @@ describe('Card component', () => {
     sex: 'male',
     birthday: '2023-04-12',
     country: 'Albania',
-    agreement: true,
+    agreement: 'true',
   };
 
   it('name, animalname, sex, brirthday, country, image and agreement', () => {
@@ -32,7 +32,7 @@ describe('List of cards', () => {
       sex: 'male',
       birthday: '2000-04-12',
       country: 'Albania',
-      agreement: true,
+      agreement: 'true',
     },
     {
       name: 'Joe',
@@ -41,7 +41,7 @@ describe('List of cards', () => {
       sex: 'male',
       birthday: '2010-01-12',
       country: 'Albania',
-      agreement: true,
+      agreement: 'true',
     },
     {
       name: 'Holly',
@@ -50,7 +50,7 @@ describe('List of cards', () => {
       sex: 'female',
       birthday: '2009-01-11',
       country: 'England',
-      agreement: true,
+      agreement: 'true',
     },
   ];
 

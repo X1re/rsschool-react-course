@@ -19,9 +19,11 @@ const vitestConfig: VitestUserConfigInterface = {
 export default defineConfig({
   test: vitestConfig.test,
   plugins: [react()],
-  // root: '../rsschool-react-course/',
   // build: {
-  //   outDir: '../rsschool-react-course/dist/',
-  //   emptyOutDir: true,
+  //   rollupOptions: {
+  //     output: {
+  //       dir: './dist/',
+  //     },
+  //   },
   // },
 });
