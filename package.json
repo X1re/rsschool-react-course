@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc --build --clean && vite build",
     "preview": "vite preview",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
     "test": "vitest run --coverage"

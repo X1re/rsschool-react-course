@@ -43,6 +43,11 @@ const Home = () => {
     }
   };
   useEffect(() => {
+    if (storageValue) {
+      findPhotos(storageValue);
+    }
+  }, [storageValue]);
+  useEffect(() => {
     getPopular();
     return () => {
       if (searchValue !== null) {
