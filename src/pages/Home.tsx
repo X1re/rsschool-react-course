@@ -23,6 +23,7 @@ const Home = () => {
   };
 
   async function findPhotos(query: string) {
+    setHomeCards([]);
     try {
       const { photo } = await flickr.search.get(query);
       setHomeCards(photo);
