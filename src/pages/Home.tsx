@@ -15,9 +15,9 @@ const Home = () => {
   const [selectedCard, setSelectedCard] = useState<Photo>();
 
   const handleSearchSubmit = (searchQuery: string): void => {
+    localStorage.setItem('searchValue', searchQuery);
     setSearchValue(searchQuery);
     if (searchQuery) {
-      localStorage.setItem('searchValue', searchQuery);
       findPhotos(searchQuery);
     } else getPopular();
   };
@@ -50,12 +50,9 @@ const Home = () => {
     }
   }, [storageValue]);
   useEffect(() => {
-    getPopular();
-    return () => {
-      if (searchValue !== null) {
-        localStorage.setItem('searchValue', searchValue);
-      }
-    };
+    if (!searchValue) {
+      getPopular();
+    }
   }, [searchValue]);
 
   return (
