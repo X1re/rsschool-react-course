@@ -16,7 +16,10 @@ const Home = () => {
 
   const handleSearchSubmit = (searchQuery: string): void => {
     setSearchValue(searchQuery);
-    if (searchQuery) findPhotos(searchQuery);
+    if (searchQuery) {
+      localStorage.setItem('searchValue', searchQuery);
+      findPhotos(searchQuery);
+    }
   };
 
   async function findPhotos(query: string) {
@@ -30,7 +33,6 @@ const Home = () => {
   const openCardModal = (id: string) => {
     const clickedCard = homeCards.find((card) => card.id === id);
     setSelectedCard(clickedCard);
-    console.log(clickedCard);
     setModal(true);
   };
 
