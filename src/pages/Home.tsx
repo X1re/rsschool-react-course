@@ -19,7 +19,7 @@ const Home = () => {
     if (searchQuery) {
       localStorage.setItem('searchValue', searchQuery);
       findPhotos(searchQuery);
-    }
+    } else getPopular();
   };
 
   async function findPhotos(query: string) {
