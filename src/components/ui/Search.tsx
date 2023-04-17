@@ -1,20 +1,21 @@
 import { ChangeEventHandler, FormEventHandler, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/typedHooks';
+import { searchPhotos } from '../../store/searchSlice';
 import '../../styles/components/Search.css';
 
-export interface SearchProps {
-  onSearch: (searchQuery: string) => void;
-  value: string;
-}
-
-const Search = ({ onSearch, value }: SearchProps) => {
-  const [searchValue, setSearchValue] = useState(value);
+const Search = () => {
+  const search = useAppSelector((state) => state.search.value);
+  const [searchValue, setSearchValue] = useState(search);
+  const dispatch = useAppDispatch();
 
   const handleSearchChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchValue(event.target.value);
   };
+
   const handleSubmit: FormEventHandler = (event) => {
     event.preventDefault();
-    onSearch(searchValue);
+
+    dispatch(searchPhotos(searchValue));
   };
 
   return (

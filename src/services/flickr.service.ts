@@ -1,7 +1,18 @@
-import http from './http.service';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export type Photos = {
-  photo: Array<Photo>;
+type ApiResponse = {
+  photos: {
+    page: number;
+    pages: number;
+    perpage: number;
+    total: number;
+    photo: Photo[];
+  };
+  extra: {
+    explore_data: string;
+    next_perlude_interval: number;
+  };
+  stat: string;
 };
 
 export type Photo = {
@@ -14,9 +25,9 @@ export type Photo = {
   secret: string;
   server: string;
   title: string;
-  onShowModal: () => void;
+  onShowModal?: () => void;
   onCardClick: (id: string) => void;
-  type: string;
+  type?: string;
 };
 
 const interestingEndpoint = `?method=flickr.interestingness.getList&api_key=${
@@ -27,22 +38,20 @@ const photoSearchEndpoint = `?method=flickr.photos.search&api_key=${
   import.meta.env.VITE_FLICKR_KEY
 }&per_page=12&format=json&nojsoncallback=1&text=`;
 
-const interestingPhotos = {
-  get: async (): Promise<Photos> => {
-    const req = await http.get(interestingEndpoint);
-    return req.data.photos;
-  },
-};
-const photoSearch = {
-  get: async (query: string): Promise<Photos> => {
-    const req = await http.get(photoSearchEndpoint + `${query}`);
-    return req.data.photos;
-  },
-};
+export const flickrApi = createApi({
+  reducerPath: 'flickrApi',
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://www.flickr.com/services/rest' }),
+  endpoints: (builder) => ({
+    getPhotos: builder.query<ApiResponse, string>({
+      query: (searchQuery) => {
+        if (searchQuery) {
+          return `${photoSearchEndpoint}${searchQuery}`;
+        } else {
+          return `${interestingEndpoint}`;
+        }
+      },
+    }),
+  }),
+});
 
-const flickr = {
-  interesting: interestingPhotos,
-  search: photoSearch,
-};
-
-export default flickr;
+export const { useGetPhotosQuery } = flickrApi;

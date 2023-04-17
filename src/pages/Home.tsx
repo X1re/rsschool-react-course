@@ -1,69 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Card from '../components/ui/Card';
 import Loading from '../components/ui/Loading';
-import flickr from '../services/flickr.service';
-import { Photo } from '../services/flickr.service';
+import { Photo, useGetPhotosQuery } from '../services/flickr.service';
 import Search from '../components/ui/Search';
 import '../styles/components/Card.css';
 import Modal from '../components/ui/Modal';
+import { useAppSelector } from '../hooks/typedHooks';
 
 const Home = () => {
-  const [homeCards, setHomeCards] = useState<[] | Photo[]>([]);
-  const storageValue = localStorage.getItem('searchValue');
-  const [searchValue, setSearchValue] = useState(storageValue || null);
   const [modal, setModal] = useState(false);
   const [selectedCard, setSelectedCard] = useState<Photo>();
+  const search = useAppSelector((state) => state.search.value);
 
-  const handleSearchSubmit = (searchQuery: string): void => {
-    localStorage.setItem('searchValue', searchQuery);
-    setSearchValue(searchQuery);
-    if (searchQuery) {
-      findPhotos(searchQuery);
-    } else getPopular();
-  };
+  const {
+    data: photosData,
+    error: interestingError,
+    isLoading: interestingIsLoading,
+  } = useGetPhotosQuery(search);
 
-  async function findPhotos(query: string) {
-    setHomeCards([]);
-    try {
-      const { photo } = await flickr.search.get(query);
-      setHomeCards(photo);
-    } catch (error) {
-      console.log(error);
-    }
-  }
   const openCardModal = (id: string) => {
-    const clickedCard = homeCards.find((card) => card.id === id);
-    setSelectedCard(clickedCard);
+    setSelectedCard(photosData!.photos.photo.find((el) => el.id === id));
     setModal(true);
   };
 
-  const getPopular = async () => {
-    try {
-      const { photo } = await flickr.interesting.get();
-      setHomeCards(photo);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    if (storageValue) {
-      findPhotos(storageValue);
-    }
-  }, [storageValue]);
-  useEffect(() => {
-    if (!searchValue) {
-      getPopular();
-    }
-  }, [searchValue]);
-
+  if (interestingError) {
+    console.log('ERROR', interestingError);
+  }
   return (
     <div className="home-container" data-testid="home" style={{ overflow: 'hidden' }}>
       {modal && <Modal modalType="card" open={modal} card={selectedCard} onClose={setModal} />}
-      <Search onSearch={handleSearchSubmit} value={searchValue || ''} />
+      <Search />
       <div className="card-container" role="main">
-        {homeCards.length > 0 ? (
-          homeCards.map((homeCard) => (
-            <Card key={homeCard.id} {...homeCard} onCardClick={openCardModal} />
+        {!interestingIsLoading ? (
+          photosData!.photos.photo.map((photos) => (
+            <Card key={photos.id} {...photos} onCardClick={openCardModal} />
           ))
         ) : (
           <Loading />
@@ -74,3 +44,34 @@ const Home = () => {
 };
 
 export default Home;
+
+// async function findPhotos(query: string) {
+//   setHomeCards([]);
+//   try {
+//     const { photo } = await flickr.search.get(query);
+//     setHomeCards(photo);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+
+// const getPopular = async () => {
+//   try {
+//     const { photo } = await flickr.interesting.get();
+//     setHomeCards(photo);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+// useEffect(() => {
+//   if (storageValue) {
+//     findPhotos(storageValue);
+//   }
+// }, [storageValue]);
+// useEffect(() => {
+//   if (!searchValue) {
+//     if (!interestingIsLoading) {
+//       setHomeCards(photosData!.photos.photo);
+//     }
+//   }
+// }, [searchValue, photosData, interestingIsLoading]);

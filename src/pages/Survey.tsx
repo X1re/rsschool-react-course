@@ -8,6 +8,8 @@ import TextField from '../components/form/TextField';
 import UploadField from '../components/form/UploadField';
 import Modal from '../components/ui/Modal';
 import SurveyCard from '../components/ui/SurveyCard';
+import { useAppDispatch, useAppSelector } from '../hooks/typedHooks';
+import { addFormCard } from '../store/formSlice';
 import '../styles/pages/Survey.css';
 
 export interface IdataArr {
@@ -34,8 +36,9 @@ export interface IFormValues {
 }
 
 const Survey = () => {
-  const [dataArr, setDataArr] = useState<Array<IdataArr>>([]);
   const [modal, setModal] = useState(false);
+  const cards = useAppSelector((state) => state.form.formCards);
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -52,7 +55,7 @@ const Survey = () => {
       agreement: data.Agreement,
       img: URL.createObjectURL(data.image[0] as unknown as Blob),
     };
-    setDataArr((prev) => [...prev, newData]);
+    dispatch(addFormCard(newData));
     reset();
     setModal(true);
   };
@@ -97,9 +100,9 @@ const Survey = () => {
           <button type="submit">Submit</button>
         </form>
       </div>
-      {dataArr && (
+      {cards && (
         <div className="survey-card__container">
-          {dataArr.map((card: IdataArr, i: number) => (
+          {cards.map((card: IdataArr, i: number) => (
             <SurveyCard key={card.name + i} {...card} />
           ))}
         </div>
