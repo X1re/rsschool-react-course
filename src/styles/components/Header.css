@@ -16,11 +16,13 @@ li > button:hover {
 ul {
   display: flex;
   justify-content: space-between;
-  margin: 0 32px;
+
   list-style: none;
+}
+.header-navigation {
+  margin: 2rem 2rem;
 }
 
 ul {
-  margin-top: 19px;
   text-decoration: none;
 }

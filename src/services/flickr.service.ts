@@ -1,4 +1,9 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {
+  buildCreateApi,
+  coreModule,
+  fetchBaseQuery,
+  reactHooksModule,
+} from '@reduxjs/toolkit/query/react';
 
 type ApiResponse = {
   photos: {
@@ -38,9 +43,16 @@ const photoSearchEndpoint = `?method=flickr.photos.search&api_key=${
   import.meta.env.VITE_FLICKR_KEY
 }&per_page=12&format=json&nojsoncallback=1&text=`;
 
+const createApi = buildCreateApi(
+  coreModule(),
+  reactHooksModule({ unstable__sideEffectsInRender: true })
+);
+
 export const flickrApi = createApi({
   reducerPath: 'flickrApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://www.flickr.com/services/rest' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://www.flickr.com/services/rest',
+  }),
   endpoints: (builder) => ({
     getPhotos: builder.query<ApiResponse, string>({
       query: (searchQuery) => {

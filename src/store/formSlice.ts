@@ -2,7 +2,7 @@ import { IdataArr } from './../pages/Survey';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 type FormCards = {
-  formCards: [];
+  formCards: IdataArr[];
 };
 
 const initialState: FormCards = { formCards: [] };

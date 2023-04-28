@@ -30,6 +30,7 @@ const Home = () => {
     <div className="home-container" data-testid="home" style={{ overflow: 'hidden' }}>
       {modal && <Modal modalType="card" open={modal} card={selectedCard} onClose={setModal} />}
       <Search />
+
       <div className="card-container" role="main">
         {!interestingIsLoading ? (
           photosData!.photos.photo.map((photos) => (
@@ -44,34 +45,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// async function findPhotos(query: string) {
-//   setHomeCards([]);
-//   try {
-//     const { photo } = await flickr.search.get(query);
-//     setHomeCards(photo);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
-// const getPopular = async () => {
-//   try {
-//     const { photo } = await flickr.interesting.get();
-//     setHomeCards(photo);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-// useEffect(() => {
-//   if (storageValue) {
-//     findPhotos(storageValue);
-//   }
-// }, [storageValue]);
-// useEffect(() => {
-//   if (!searchValue) {
-//     if (!interestingIsLoading) {
-//       setHomeCards(photosData!.photos.photo);
-//     }
-//   }
-// }, [searchValue, photosData, interestingIsLoading]);

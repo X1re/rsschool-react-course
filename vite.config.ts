@@ -13,6 +13,7 @@ const vitestConfig: VitestUserConfigInterface = {
   },
   server: {
     cors: false,
+    origin: 'http://localhost:3001/',
   },
 };
 

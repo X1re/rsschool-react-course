@@ -1,17 +1,27 @@
 import { flickrApi } from './../services/flickr.service';
-import { configureStore } from '@reduxjs/toolkit';
+// import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import searchReducer from './searchSlice';
 import formReducer from './formSlice';
+import * as toolkitRaw from '@reduxjs/toolkit';
+export type TypeToolkitRaw = typeof toolkitRaw & { default?: unknown };
+const { combineReducers, configureStore } = ((toolkitRaw as TypeToolkitRaw).default ??
+  toolkitRaw) as typeof toolkitRaw;
 
-export const store = configureStore({
-  reducer: {
-    [flickrApi.reducerPath]: flickrApi.reducer,
-    search: searchReducer,
-    form: formReducer,
-  },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(flickrApi.middleware),
+const rootReducer = combineReducers({
+  [flickrApi.reducerPath]: flickrApi.reducer,
+  search: searchReducer,
+  form: formReducer,
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+export const initStore = (
+  preloadedState?: toolkitRaw.PreloadedState<ReturnType<typeof rootReducer>>
+) =>
+  configureStore({
+    reducer: rootReducer,
+    preloadedState,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(flickrApi.middleware),
+  });
 
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof initStore>;
+export type AppDispatch = AppStore['dispatch'];
