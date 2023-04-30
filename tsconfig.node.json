@@ -3,7 +3,15 @@
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "target": "es6",
+    "moduleDetection": "auto"
   },
-  "include": ["vite.config.ts"]
+  "include": ["server2.ts"],
+  "exclude": ["vite.config.ts"],
+  "ts-node": {
+    "esm": true,
+    "transpileOnly": true,
+    "experimentalSpecifierResolution": "node"
+  }
 }

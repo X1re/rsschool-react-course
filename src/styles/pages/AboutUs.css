@@ -1,0 +1,14 @@
+.aboutUs {
+  height: calc(100vh - 85px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutUs h1 {
+  font-size: 3rem;
+}
+.aboutUs p {
+  font-size: 1.5rem;
+}

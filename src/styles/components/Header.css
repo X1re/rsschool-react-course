@@ -1,0 +1,28 @@
+li > button {
+  border: none;
+  display: inline-block;
+  font-size: 24px;
+  background-color: transparent;
+  cursor: pointer;
+  color: black;
+}
+
+li > button:hover {
+  text-decoration: underline #009fb7;
+  text-underline-offset: 10px;
+}
+
+.header-navigation,
+ul {
+  display: flex;
+  justify-content: space-between;
+
+  list-style: none;
+}
+.header-navigation {
+  margin: 2rem 2rem;
+}
+
+ul {
+  text-decoration: none;
+}
