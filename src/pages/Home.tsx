@@ -30,7 +30,7 @@ const Home = () => {
     <div className="home-container" data-testid="home" style={{ overflow: 'hidden' }}>
       {modal && <Modal modalType="card" open={modal} card={selectedCard} onClose={setModal} />}
       <Search />
-
+      <h1 className="home-h1">Search any photo at flickr!</h1>
       <div className="card-container" role="main">
         {!interestingIsLoading ? (
           photosData!.photos.photo.map((photos) => (

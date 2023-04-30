@@ -6,6 +6,7 @@ coverage
 public
 src/assets
 src/test
+.nyc_output
 
 # Editor directories and files
 .vscode/*

@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import type { UserConfig as VitestUserConfigInterface } from 'vitest/config';
+import istanbul from 'vite-plugin-istanbul';
 
 const vitestConfig: VitestUserConfigInterface = {
   test: {
@@ -19,7 +20,14 @@ const vitestConfig: VitestUserConfigInterface = {
 
 export default defineConfig({
   test: vitestConfig.test,
-  plugins: [react()],
+  plugins: [
+    react(),
+    istanbul({
+      cypress: true,
+      requireEnv: false,
+    }),
+  ],
+
   // build: {
   //   rollupOptions: {
   //     output: {

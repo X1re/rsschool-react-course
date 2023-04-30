@@ -64,7 +64,7 @@ const Survey = () => {
     <div className="survey">
       {modal && <Modal modalType="submit" open={modal} onClose={setModal} />}
       <div className="survey-content">
-        <h1>Pls share with us your favorite animal</h1>
+        <h1 data-testid="survey-h1">Pls share with us your favorite animal</h1>
         <h4>But first tell a bit about yourself</h4>
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField name="userName" label="Your name" register={register} errors={errors} />
